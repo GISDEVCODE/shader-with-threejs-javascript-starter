@@ -1,8 +1,8 @@
 import * as THREE from "three"
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
-import vertexShaderCode from  "/vertex.glsl"
-import fragmentShaderCode from  "/fragment.glsl"
+import vertexShaderCode from  "/shaders/vertex.glsl"
+import fragmentShaderCode from  "/shaders/fragment.glsl"
 
 export default class App {
   constructor() {
