@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+
+#canvas-container {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2c3e50;
+} 
