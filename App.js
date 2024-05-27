@@ -1,8 +1,8 @@
 import * as THREE from "three"
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
-import vsh from  "/basic-vs.glsl"
-import fsh from  "/basic-fs.glsl"
+import vertexShaderCode from  "/vertex.glsl"
+import fragmentShaderCode from  "/fragment.glsl"
 
 export default class App {
   constructor() {
@@ -37,8 +37,8 @@ export default class App {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.ShaderMaterial({
       uniforms: {},
-      vertexShader: vsh,
-      fragmentShader: fsh
+      vertexShader: vertexShaderCode,
+      fragmentShader: fragmentShaderCode
     })
     const mesh = new THREE.Mesh(geometry, material)
 
