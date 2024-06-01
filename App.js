@@ -9,8 +9,8 @@ export default class App {
     this._setupThreeJs()
     this._setupCamera()
     this._setupControls()
-    this._setupEvents()
     this._setupModel()
+    this._setupEvents()
   }
 
   _setupThreeJs() {
@@ -36,7 +36,11 @@ export default class App {
   _setupModel() {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.ShaderMaterial({
-      uniforms: {},
+      uniforms: {
+        uTime: new THREE.Uniform(1.0),
+        uResolution: new THREE.Uniform(new THREE.Vector2()),
+        uMouse: new THREE.Uniform(new THREE.Vector2())
+      },
       vertexShader: vertexShaderCode,
       fragmentShader: fragmentShaderCode
     })
@@ -45,6 +49,7 @@ export default class App {
     mesh.position.set(0.5, 0.5, 0)
 
     this._scene.add(mesh)
+    this._material = material;
   }
 
   _setupControls() {
@@ -54,12 +59,20 @@ export default class App {
   _setupEvents() {
     window.onresize = this.resize.bind(this)
     this.resize()
+
+    document.onmousemove = (event) => {
+      this._material.uniforms.uMouse.value.set(event.pageX, event.pageY);
+    }
+
     this._clock = new THREE.Clock()
     requestAnimationFrame(this.render.bind(this))
   }
 
   update() {
     const delta = this._clock.getDelta()
+
+    this._material.uniforms.uTime.value += delta;
+
     this._orbitControls.update()
   }
 
@@ -78,5 +91,6 @@ export default class App {
     this._camera.updateProjectionMatrix()
 
     this._renderer.setSize(width, height)
+    this._material.uniforms.uResolution.value.set(width, height);
   }
 }
