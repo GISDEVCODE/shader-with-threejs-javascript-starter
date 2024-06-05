@@ -37,7 +37,7 @@ export default class App {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.ShaderMaterial({
       uniforms: {
-        uTime: new THREE.Uniform(1.0),
+        uTime: new THREE.Uniform(0),
         uResolution: new THREE.Uniform(new THREE.Vector2()),
         uMouse: new THREE.Uniform(new THREE.Vector2())
       },
