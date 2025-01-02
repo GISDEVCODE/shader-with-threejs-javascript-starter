@@ -18,7 +18,7 @@ export default class App {
     this._divContainer = divContainer
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
-    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
     divContainer.appendChild(renderer.domElement)
 
