@@ -61,7 +61,9 @@ export default class App {
     this.resize()
 
     document.onmousemove = (event) => {
-      this._material.uniforms.uMouse.value.set(event.pageX, event.pageY);
+      const pr = this._renderer.getPixelRatio();
+      const size = this._material.uniforms.uResolution.value;
+      this._material.uniforms.uMouse.value.set(event.pageX * pr, (size.y - event.pageY) * pr);
     }
 
     this._clock = new THREE.Clock()
