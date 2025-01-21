@@ -93,6 +93,7 @@ export default class App {
     this._camera.updateProjectionMatrix()
 
     this._renderer.setSize(width, height)
-    this._material.uniforms.uResolution.value.set(width, height);
+    const pr = this._renderer.getPixelRatio();
+    this._material.uniforms.uResolution.value.set(width*pr, height*pr);
   }
 }
