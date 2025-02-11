@@ -38,8 +38,8 @@ export default class App {
     const material = new THREE.ShaderMaterial({
       uniforms: {
         uTime: new THREE.Uniform(0),
-        uResolution: new THREE.Uniform(new THREE.Vector2()),
-        uMouse: new THREE.Uniform(new THREE.Vector2())
+        uResolution: new THREE.Uniform(new THREE.Vector3()),
+        uMouse: new THREE.Uniform(new THREE.Vector4())
       },
       vertexShader: vertexShaderCode,
       fragmentShader: fragmentShaderCode
@@ -63,8 +63,14 @@ export default class App {
     document.onmousemove = (event) => {
       const pr = this._renderer.getPixelRatio();
       const size = this._material.uniforms.uResolution.value;
-      this._material.uniforms.uMouse.value.set(event.pageX * pr, (size.y - event.pageY) * pr);
+      const lB = (event.buttons & 1) >> 0;
+      const rB = (event.buttons & 2) >> 1;
+      // const mB = (event.buttons & 4) >> 2;
+      this._material.uniforms.uMouse.value.set(event.pageX * pr, (size.y - event.pageY) * pr, lB, rB);
     }
+
+    document.onmousedown = document.onmousemove;
+    document.onmouseup = document.onmousemove;
 
     this._clock = new THREE.Clock()
     requestAnimationFrame(this.render.bind(this))
@@ -94,6 +100,6 @@ export default class App {
 
     this._renderer.setSize(width, height)
     const pr = this._renderer.getPixelRatio();
-    this._material.uniforms.uResolution.value.set(width*pr, height*pr);
+    this._material.uniforms.uResolution.value.set(width*pr, height*pr, pr);
   }
 }
