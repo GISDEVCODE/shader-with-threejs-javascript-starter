@@ -1,5 +1,4 @@
 import * as THREE from "three"
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 import vertexShaderCode from  "/shaders/vertex.glsl"
 import fragmentShaderCode from  "/shaders/fragment.glsl"
@@ -8,7 +7,7 @@ export default class App {
   constructor() {
     this._setupThreeJs()
     this._setupCamera()
-    this._setupControls()
+    // this._setupControls()
     this._setupModel()
     this._setupEvents()
   }
