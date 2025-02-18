@@ -80,7 +80,7 @@ export default class App {
 
     this._material.uniforms.uTime.value += delta;
 
-    this._orbitControls.update()
+    // this._orbitControls.update()
   }
 
   render() {
