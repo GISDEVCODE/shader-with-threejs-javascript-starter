@@ -65,7 +65,7 @@ export default class App {
       const lB = (event.buttons & 1) >> 0;
       const rB = (event.buttons & 2) >> 1;
       // const mB = (event.buttons & 4) >> 2;
-      this._material.uniforms.uMouse.value.set(event.pageX * pr, (size.y - event.pageY) * pr, lB, rB);
+      this._material.uniforms.uMouse.value.set(event.pageX * pr, size.y - event.pageY * pr, lB, rB);
     }
 
     document.onmousedown = document.onmousemove;
